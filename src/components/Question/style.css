@@ -1,0 +1,30 @@
+.question-container {
+    margin: 2rem auto;
+    width: 1300px;
+    height: 600px;
+    background-color: var(--primary);
+    border-radius: 2rem;
+    padding: 3rem;
+
+}
+.q-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+ .question-box {
+    background-color: var(--secondary);
+    margin: 5rem auto;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 90%;
+    height:80% ;
+    border-radius: 1rem;
+    padding: 1.5rem;
+ }
+ .question-box h3 {
+    color: #000;
+ }

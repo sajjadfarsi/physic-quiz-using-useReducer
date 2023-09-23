@@ -1,0 +1,15 @@
+h2 {
+    color: #000;
+    background-color: var(--secondary) !important;
+    font-size: 2rem;
+}
+.active {
+    border: none;
+    color: #ffffff;
+    background-color: var(--primary);
+    padding: 1rem 1.5rem;
+    font-size: 1.5rem;
+    border-radius: .7rem;
+    margin-top: 2rem;
+    cursor: pointer;
+}

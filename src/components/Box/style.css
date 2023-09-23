@@ -1,0 +1,17 @@
+.box {
+    margin:5rem  auto;
+    width: 600px;
+    height: 600px;
+    background-color: var(--secondary);
+    border-radius: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 7rem 1rem;
+}
+
+.box p {
+    font-size: 1.3rem;
+    margin: 50px 0;
+}
