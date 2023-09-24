@@ -14,6 +14,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
+### `npm run server`
+
+to fetch the questions from localhost:5000 you should first run this command./
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
