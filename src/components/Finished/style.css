@@ -1,0 +1,20 @@
+.finished-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    width: 25rem;
+    height: 25rem;
+    background-color: var(--primary);
+    margin:8rem auto;
+    padding: 2rem;
+    border-radius: 1rem;
+
+}
+.finished-result h2 {
+    background-color: transparent !important;
+    font-size: 1.3rem;
+    color : #fff
+    
+}

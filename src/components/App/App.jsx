@@ -5,12 +5,20 @@ import Main from "../Main";
 import "./App.css";
 import Question from "../Question";
 import Loader from "../Loader";
+import Finished from "../Finished";
+import Error from "../Error";
 
+const TIME_OF_QUIZ = 180;
 const initialState = {
   status: "loading",
   questions: [],
   question: null,
   score: 0,
+  isCorrect: false,
+  selectedOption: null,
+  bestScore: 0,
+  error: null,
+  secondsRemaining: TIME_OF_QUIZ,
 };
 function App() {
   function reducer(state, action) {
@@ -18,7 +26,11 @@ function App() {
       case "loading":
         return { ...state, status: "loading" };
       case "receiveData":
-        return { ...state, status: "ready", questions: action.payload };
+        return {
+          ...state,
+          status: "ready",
+          questions: action.payload,
+        };
       case "start":
         return {
           ...state,
@@ -31,12 +43,16 @@ function App() {
           ...state,
           presentQuestionNum: state.presentQuestionNum++,
           selectedOption: action.payload.index,
-          score: state.score + action.payload.scoreOfQuestion,
+          score:
+            state.score +
+            (action.payload.index === state.question.correctOption
+              ? action.payload.score
+              : 0),
         };
       case "nextQ":
         return {
           ...state,
-          question: state.questions[--state.presentQuestionNum],
+          question: state.questions[state.presentQuestionNum - 1],
           selectedOption: null,
         };
       case "lastQ":
@@ -44,6 +60,16 @@ function App() {
           ...state,
           status: "finished",
         };
+      case "restart":
+        return { ...initialState, questions: state.questions, status: "ready" };
+      case "saveLocalStorage":
+        return { ...state, bestScore: action.payload };
+      case "error":
+        return { ...state, error: action.payload };
+      case "timer":
+        return { ...state,
+          secondsRemaining: state.secondsRemaining - 1,
+          status: state.secondsRemaining === 0 ? "finished" : state.status, };
       default:
         throw new Error("something went wrong");
     }
@@ -59,14 +85,20 @@ function App() {
       fetch("http://localhost:5000/questions")
         .then((res) => res.json())
         .then((data) => {
-          dispatch({ type: "receiveData", payload: data });
+          setTimeout(() => {
+            dispatch({ type: "receiveData", payload: data });
+          }, 600);
         })
         .catch((err) => {
-          // dispatch({ type: "error", payload: err.message });
+          dispatch({
+            type: "error",
+            payload: "مشکلی در گرفتن سوالات بوجود آمده است",
+          });
         });
     }
     receiveData();
   }, []);
+
   return (
     <div className="App">
       <Header />
@@ -98,8 +130,19 @@ function App() {
           totalScores={totalScores}
           selectedOption={state.selectedOption}
           score={state.score}
+          secondsRemaining={state.secondsRemaining}
         />
       )}
+
+      {state.status === "finished" && (
+        <Finished
+          totalScore={totalScores}
+          score={state.score}
+          dispatch={dispatch}
+          bestScore={state.bestScore}
+        />
+      )}
+      {state.status === "error" && <Error error={state.error} />}
     </div>
   );
 }

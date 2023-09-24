@@ -1,10 +1,10 @@
 .question-container {
-    margin: 2rem auto;
-    width: 1300px;
-    height: 600px;
+    margin: 1.5rem auto;
+    max-width: 1300px;
+    max-height: 600px;
     background-color: var(--primary);
     border-radius: 2rem;
-    padding: 3rem;
+    padding: 2rem;
 
 }
 .q-info {
@@ -15,16 +15,43 @@
 }
  .question-box {
     background-color: var(--secondary);
-    margin: 5rem auto;
+    margin: 3rem auto;
     display: flex;
     align-items: start;
     justify-content: space-between;
     flex-direction: column;
     width: 90%;
-    height:80% ;
+    height:90% ;
     border-radius: 1rem;
     padding: 1.5rem;
  }
  .question-box h3 {
     color: #000;
+ }
+ .question-box ul {
+    width: 100%;
+    height: 85%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+ }
+
+ .nextQ {
+    padding: 1rem 1.7rem;
+    border: none;
+    outline: none;
+    font-size: 1.3rem;
+    border-radius: 1.4rem;
+    font-weight: 500;
+    
+ }
+
+ .footer-container {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
  }
