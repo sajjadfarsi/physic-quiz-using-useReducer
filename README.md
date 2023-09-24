@@ -16,7 +16,7 @@ You may also see any lint errors in the console.
 
 ### `npm run server`
 
-to fetch the questions from localhost:5000 you should first run this command.\
+to fetch the questions from localhost:5000 you should first run this command.
 
 ### `npm test`
 
